@@ -27,7 +27,7 @@ resource "hsdp_iam_user" "example_user" {
 resource "hsdp_iam_group" "example_group" {
   name                  = "EXAMPLE_GROUP_TF"
   roles                 = [hsdp_iam_role.example_role.id]
-  users                 = [for user in hsdp_iam_user.example_user: user.id]
+  users                 = concat([var.org_admin_username],[for user in hsdp_iam_user.example_user: user.id])
   managing_organization = hsdp_iam_org.example_org.id
 }
 
