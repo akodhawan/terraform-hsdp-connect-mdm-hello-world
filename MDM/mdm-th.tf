@@ -19,3 +19,37 @@ resource "hsdp_connect_mdm_application" "testapp1" {
   name        = "MOBILE"
   proposition_id = hsdp_connect_mdm_proposition.testprop1.id
 }
+
+resource "hsdp_connect_mdm_device_group" "testgroup1" {
+  name        = "funny-product-group"
+  description = "A funny-product device group"
+  application_id = hsdp_connect_mdm_application.testapp1.id
+}
+
+resource "hsdp_connect_mdm_device_type" "testdevicetype1" {
+  name                   = "funny-product-device-type"
+  description            = "WEARABLE0001"
+  commercial_type_number = "WATCH1"
+  device_group_id = hsdp_connect_mdm_device_group.testgroup1.id
+  custom_type_attributes = {
+    position = "wrist"
+    region   = "eu"
+  }
+}
+
+resource "hsdp_connect_mdm_oauth_client" "testclient1" {
+  name                = "TESTMDMOACLIENT"
+  description         = "Test client"
+  application_id      = hsdp_connect_mdm_application.testapp1.id
+  global_reference_id = "c105f8c2-d62c-4d9f-8810-50adbd883ca8"
+
+  scopes         = [ ]
+  default_scopes = [ ]
+
+  redirection_uris = [
+  ]
+
+  response_types = ["code", "code id_token"]
+
+  user_client = true
+}
