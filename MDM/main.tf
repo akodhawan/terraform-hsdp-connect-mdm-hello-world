@@ -6,4 +6,5 @@ provider "hsdp" {
   org_admin_username = var.org_admin_username
   org_admin_password = var.org_admin_password
   debug_log = "./debug.log"
+  mdm_url = "https://connectmdm-dev-alpha.us-east.philips-healthsuite.com/connect/mdm"
 }
