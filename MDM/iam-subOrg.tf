@@ -21,11 +21,35 @@ resource "hsdp_iam_user" "example_user" {
   first_name      = each.value.first_name
   last_name       = each.value.last_name
   organization_id = hsdp_iam_org.example_org.id
+  password = "Password@123"
 }
 
 resource "hsdp_iam_group" "example_group" {
   name                  = "EXAMPLE_GROUP_TF"
   roles                 = [hsdp_iam_role.example_role.id]
-  users                 = [for user in hsdp_iam_user.institute_user: user.id]
+  users                 = [for user in hsdp_iam_user.example_user: user.id]
   managing_organization = hsdp_iam_org.example_org.id
+}
+
+resource "hsdp_iam_proposition" "example_prop" {
+  name                = "EXAMPLEPROPOSITION"
+  description         = "Eaxmple Proposition"
+  organization_id     = hsdp_iam_org.example_org.id
+}
+
+resource "hsdp_iam_application" "example_app" {
+  name                = "EXAMPLEAPP"
+  description         = "Example application"
+  proposition_id      = hsdp_iam_proposition.example_prop.id
+}
+
+resource "hsdp_iam_service" "example_service" {
+  name                = "EXAMPLESERVICE"
+  description         = "Example service"
+  application_id      = hsdp_iam_application.example_app.id
+
+  validity            = 12
+
+  scopes              = ["openid"]
+  default_scopes      = ["openid"]
 }
