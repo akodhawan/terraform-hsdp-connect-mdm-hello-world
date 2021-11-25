@@ -1,20 +1,20 @@
 <img src="https://cdn.rawgit.com/hashicorp/terraform-website/master/content/source/assets/images/logo-hashicorp.svg" width="500px">
 
-# Terraform-Hello-HSDP-IAM
+# terraform-hsdp-connect-mdm-hello-world
 
-Terraform-Hello-HSDP-IAM
+terraform-hsdp-connect-mdm-hello-world
 
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| hsdp | >= 0.17.0 |
+| hsdp | >= 0.26.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| hsdp | >= 0.17.0 |
+| hsdp | >= 0.26.0 |
 
 
 ## How To

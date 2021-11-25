@@ -35,3 +35,12 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+
+variable "example_users" {
+  description = "Example Users"
+  type        = list(object({
+    email_id = string
+    first_name = string
+    last_name = string
+  }))
+}

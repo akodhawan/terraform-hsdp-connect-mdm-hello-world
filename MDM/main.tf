@@ -5,4 +5,5 @@ provider "hsdp" {
   oauth2_password    = var.oauth2_password
   org_admin_username = var.org_admin_username
   org_admin_password = var.org_admin_password
+  debug_log = "./debug.log"
 }
