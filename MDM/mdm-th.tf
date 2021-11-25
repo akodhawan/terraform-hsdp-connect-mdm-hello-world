@@ -15,3 +15,7 @@ resource "hsdp_connect_mdm_proposition" "testprop1" {
   depends_on          = [module.connect_onboarding] 
 }
 
+resource "hsdp_connect_mdm_application" "testapp1" {
+  name        = "MOBILE"
+  proposition_id = hsdp_connect_mdm_proposition.testprop1.id
+}
