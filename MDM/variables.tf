@@ -38,9 +38,9 @@ variable "environment" {
 
 variable "example_users" {
   description = "Example Users"
-  type        = list(object({
-    email_id = string
+  type = list(object({
+    email_id   = string
     first_name = string
-    last_name = string
+    last_name  = string
   }))
 }
