@@ -11,7 +11,7 @@ module "connect_onboarding" {
 
 
 resource "hsdp_connect_mdm_proposition" "testprop1" {
-  name            = "TF-MDM-${random_pet.deploy.id}"
+  name            = upper("TF-MDM-${random_pet.deploy.id}")
   description     = "Terraform managed ${random_pet.deploy.id} proposition"
   organization_id = hsdp_iam_org.example_org.id
   status          = "ACTIVE"
@@ -19,7 +19,7 @@ resource "hsdp_connect_mdm_proposition" "testprop1" {
 }
 
 resource "hsdp_connect_mdm_application" "testapp1" {
-  name           = "TF-MDM-${random_pet.deploy.id}"
+  name           = upper("TF-MDM-${random_pet.deploy.id}")
   proposition_id = hsdp_connect_mdm_proposition.testprop1.id
 }
 
