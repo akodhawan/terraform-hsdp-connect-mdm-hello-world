@@ -23,10 +23,15 @@ resource "hsdp_iam_user" "example_user" {
   organization_id = hsdp_iam_org.example_org.id
 }
 
+
+data "hsdp_iam_user" "org_admin_user" {
+  username = var.org_admin_username
+}
+
 resource "hsdp_iam_group" "example_group" {
   name                  = "TF-${random_pet.deploy.id}"
   roles                 = [hsdp_iam_role.example_role.id]
-  users                 = concat([var.org_admin_username], [for user in hsdp_iam_user.example_user : user.id])
+  users                 = [data.hsdp_iam_user.org_admin_user.id]
   managing_organization = hsdp_iam_org.example_org.id
 }
 
