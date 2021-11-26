@@ -1,7 +1,7 @@
+.idea/
 .terraform
-config/dev.tfvars
 .terraform.lock.hcl
-terraform.tfstate
-terraform.tfstate.backup
+*.tfstate.*
 **/.DS_Store
 debug.log
+*.tfvars
