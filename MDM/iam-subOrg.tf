@@ -21,7 +21,6 @@ resource "hsdp_iam_user" "example_user" {
   first_name      = each.value.first_name
   last_name       = each.value.last_name
   organization_id = hsdp_iam_org.example_org.id
-  password = "Password@123"
 }
 
 resource "hsdp_iam_group" "example_group" {
