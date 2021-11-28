@@ -1,6 +1,14 @@
 resource "random_pet" "deploy" {
 }
 
+module "connect_onboarding_root_org" {
+  source                  = "philips-labs/connect-onboarding/hsdp"
+  onboarding_iam_org_id   = var.example_root_org
+  provisioning_service_id = hsdp_iam_service.example_service.id
+  admin_users             = [var.org_admin_username]
+  self_service_users      = [var.org_admin_username]
+}
+
 module "connect_onboarding" {
   source                  = "philips-labs/connect-onboarding/hsdp"
   onboarding_iam_org_id   = hsdp_iam_org.example_org.id
@@ -11,7 +19,7 @@ module "connect_onboarding" {
 
 
 resource "hsdp_connect_mdm_proposition" "testprop1" {
-  name            = "TF-MDM-${random_pet.deploy.id}"
+  name            = upper("TF-MDM-${random_pet.deploy.id}")
   description     = "Terraform managed ${random_pet.deploy.id} proposition"
   organization_id = hsdp_iam_org.example_org.id
   status          = "ACTIVE"
@@ -19,7 +27,8 @@ resource "hsdp_connect_mdm_proposition" "testprop1" {
 }
 
 resource "hsdp_connect_mdm_application" "testapp1" {
-  name           = "TF-MDM-${random_pet.deploy.id}"
+  name           = upper("TF-MDM-${random_pet.deploy.id}")
+  description    = "Terraform managed ${random_pet.deploy.id} application"
   proposition_id = hsdp_connect_mdm_proposition.testprop1.id
 }
 
